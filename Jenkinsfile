@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        SONAR_PROJECT_KEY = 'direnv'
+        SONAR_PROJECT_KEY = 'trashcan'
     }
 
     stages {
