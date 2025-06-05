@@ -10,12 +10,6 @@ pipeline {
     }
 
     stages {
-        stage('SCM') {
-            steps {
-                git 'https://github.com/victorposada/trashcan.git'
-            }
-        }
-
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube-eks-lab') {
