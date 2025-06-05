@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        sonarQube 'sonarqube'
-    }
-
     environment {
         SONAR_PROJECT_KEY = 'trashcan'
     }
@@ -13,7 +9,7 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('sonarqube-eks-lab') {
-                    sh "${tool('sonarqube')}/bin/sonar-scanner -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}"
+                    sh "sonar-scanner -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}"
                 }
             }
         }
