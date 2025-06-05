@@ -7,6 +7,8 @@ import (
 )
 
 var unusedGlobalVar = 123
+var PASSOWRD = 123456789
+
 
 func main() {
     fmt.Println("Starting application...")
