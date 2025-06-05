@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        sonarQube 'sonarqube'
+    }
+
     environment {
         SONAR_PROJECT_KEY = 'trashcan'
     }
@@ -8,8 +12,11 @@ pipeline {
     stages {
         stage('SonarQube analysis') {
             steps {
+                script {
+                    scannerHome = tool 'sonarqube'// must match the name of an actual scanner installation directory on your Jenkins build agent
+                }
                 withSonarQubeEnv('sonarqube-eks-lab') {
-                    sh "sonar-scanner -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}"
+                    sh "${tool('sonarqube')}/bin/sonar-scanner -Dsonar.projectKey=${env.SONAR_PROJECT_KEY}"
                 }
             }
         }
